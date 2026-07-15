@@ -28,54 +28,30 @@ func checkWin(board [9]string) string {
 	// Winning conditions: same chip type in indexes 012, 345, 678, 036, 147, 258, 048, 246
 	winner := ""
 	switch {
-	case board[0] == board[1] && board[1] == board[2]:
-		if board[0] == " " {
-			winner = ""
-		} else {
-			winner = board[0]
-		}
-	case board[3] == board[4] && board[4] == board[5]:
-		if board[3] == " " {
-			winner = ""
-		} else {
-			winner = board[3]
-		}
-	case board[6] == board[7] && board[7] == board[8]:
-		if board[6] == " " {
-			winner = ""
-		} else {
-			winner = board[6]
-		}
-	case board[0] == board[3] && board[3] == board[6]:
-		if board[0] == " " {
-			winner = ""
-		} else {
-			winner = board[0]
-		}
-	case board[1] == board[4] && board[4] == board[7]:
-		if board[1] == " " {
-			winner = ""
-		} else {
-			winner = board[1]
-		}
-	case board[2] == board[5] && board[5] == board[8]:
-		if board[2] == " " {
-			winner = ""
-		} else {
-			winner = board[2]
-		}
-	case board[0] == board[4] && board[4] == board[8]:
-		if board[0] == " " {
-			winner = ""
-		} else {
-			winner = board[0]
-		}
-	case board[2] == board[4] && board[4] == board[6]:
-		if board[2] == " " {
-			winner = ""
-		} else {
-			winner = board[2]
-		}
+	case board[0] != " " && board[0] == board[1] && board[1] == board[2]:
+		winner = board[0]
+
+	case board[3] != " " && board[3] == board[4] && board[4] == board[5]:
+		winner = board[3]
+
+	case board[6] != " " && board[6] == board[7] && board[7] == board[8]:
+		winner = board[6]
+
+	case board[0] != " " && board[0] == board[3] && board[3] == board[6]:
+		winner = board[0]
+
+	case board[1] != " " && board[1] == board[4] && board[4] == board[7]:
+		winner = board[1]
+
+	case board[2] != " " && board[2] == board[5] && board[5] == board[8]:
+		winner = board[2]
+
+	case board[0] != " " && board[0] == board[4] && board[4] == board[8]:
+		winner = board[0]
+
+	case board[2] != " " && board[2] == board[4] && board[4] == board[6]:
+
+		winner = board[2]
 	}
 
 	return winner
@@ -143,6 +119,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.turn++
 			m.whoseTurn = checkWhoseTurn(m.turn)
 			m.position = 0 // reset position
+
+			// Ai player
 		}
 
 	}
